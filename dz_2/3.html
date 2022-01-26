@@ -21,7 +21,16 @@
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  const a = Number(prompt("Введите значение  a"))
+  const b = Number(prompt("Введите значение  b"))
+
+  if (a > 0 && b > 0) {
+    alert(a - b);
+  } else if (a < 0 && b < 0) {
+    alert(a * b);
+  } else if (a < 0 && b > 0 || a > 0 && b < 0) {
+    alert(a + b);
+  }
 </script>
 </body>
 </html>

@@ -32,7 +32,73 @@ Infinity делать не нужно, однако, в случае если б
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  /**
+   *Function return sum a and b
+   * @param {number} a
+   * @param {number} b
+   * @returns {number} Ну естественно если переметры были переданы цифровые
+   */
+  function sum(a, b) {
+    return a + b;
+  };
+
+  /**
+   * @param {number} a
+   * @param {number} b
+   * @returns {number} Ну естественно если переметры были переданы цифровые
+   */
+  function difference(a, b) {
+    if (a >= b) {
+      return a - b;
+    } else {
+      return b - a;
+    }
+  };
+
+  /**
+   * @param {number} a
+   * @param {number} b
+   * @returns {number} Ну естественно если переметры были переданы цифровые
+   */
+  function multiplication(a, b) {
+    return a * b;
+  };
+
+  /**
+   * @param {number} a
+   * @param {number} b
+   * @returns {number} Ну естественно если переметры были переданы цифровые
+   */
+  function division(a, b) {
+    return a / b;
+  };
+
+  /**
+   *
+   * @param {number} arg1
+   * @param {number} arg2
+   * @param {string} operation
+   * @returns {number} Ну естественно если переметры были переданы цифровые
+   */
+  function mathOperation(arg1, arg2, operation) {
+    switch (operation) {
+      case "+":
+        return sum(arg1, arg2)
+      case "-":
+        return multiplication(arg1, arg2)
+      case "*":
+        return sum(arg1, arg2)
+      case "/":
+        return division(arg1, arg2)
+      default:
+        return NaN
+    }
+  };
+
+  console.log(mathOperation(5, 3, "+"));
+  console.log(mathOperation(5, 3, ":)"));
+
+
 </script>
 </body>
 </html>

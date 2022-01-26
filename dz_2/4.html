@@ -31,7 +31,53 @@
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  /**
+   *Function return sum a and b
+   * @param {number} a
+   * @param {number} b
+   * @returns {number} Ну естественно если переметры были переданы цифровые
+   */
+  function sum(a, b) {
+    return a + b;
+  };
+
+  /**
+   * @param {number} a
+   * @param {number} b
+   * @returns {number} Ну естественно если переметры были переданы цифровые
+   */
+  function difference(a, b) {
+    if (a >= b) {
+      return a - b;
+    } else {
+      return b - a;
+    }
+  };
+
+    /**
+     * @param {number} a
+     * @param {number} b
+     * @returns {number} Ну естественно если переметры были переданы цифровые
+     */
+    function multiplication(a, b) {
+      return a * b;
+    };
+
+  /**
+   * @param {number} a
+   * @param {number} b
+   * @returns {number} Ну естественно если переметры были переданы цифровые
+   */
+  function division(a, b) {
+    return a / b;
+  };
+
+  const a = 10;
+  const b = 15;
+  console.log(sum(a, b));
+  console.log(difference(a, b));
+  console.log(multiplication(a, b));
+  console.log(division(a, b));
 </script>
 </body>
 </html>
