@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+1. Необходимо вывести в консоль массив продуктов в котором есть хоть одна
+фотография используя метод filter. Исходные данные - массив products.
+2. Необходимо отсортировать массив products используя метод sort по цене,
+начиная с самой маленькой, заканчивая самой большой ценой, после чего вывести
+отсортированный массив в консоль.
+-->
+<script>
+  "use strict";
+
+  const products = [
+    {
+      id: 3,
+      price: 127,
+      photos: [
+        "1.jpg",
+        "2.jpg",
+      ],
+    },
+    {
+      id: 5,
+      price: 499,
+      photos: [],
+    },
+    {
+      id: 10,
+      price: 26,
+      photos: [
+        "3.jpg",
+      ],
+    },
+    {
+      id: 8,
+      price: 78,
+    },
+  ];
+
+  /**
+   * Get dict if photo in dict && photo.lenght > 0 return true
+   * @param dict
+   * @returns {boolean}
+   */
+  function photoFilter (dict) {
+    if (!('photos' in dict)) { //не нашел как в JS сделать not in кроме такого способа
+      return;
+    }
+    if (dict.photos.length > 0) {
+      return true;
+    }
+  }
+
+  console.log(products.filter(photoFilter));
+
+  products.sort(function(a, b) {
+    return a.price - b.price;
+  });
+
+  console.log(products)
+
+  /*
+  Не понял как работет метод сортировки - как использовать понял, а вот что под капотом нет
+
+  var numbers = [4, 2, 5, 1, 3];
+  numbers.sort(function(a, b) {
+      console.log(a,b, a - b)
+      return a - b;
+  });
+  console.log(numbers); // [1, 2, 3, 4, 5]
+
+  пример с мозилы - встроил ему принт внутрь и все равно не понял
+  результат вот такой у принта
+  2 4 -2
+  5 2 3
+  5 4 1
+  1 4 -3
+  1 2 -1
+  3 4 -1
+  3 2 1
+  но если он сравнивает все со всем то должно быть больше сравнений...
+  каждую цифру он должен сравнить с 4 другими это 10 вариантов сравнения а он делает только 7?
+  Буду признателен за объяснение
+   */
+</script>
+</body>
+</html>
