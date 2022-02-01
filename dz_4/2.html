@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для поста в социальной сети.
+Названия: `PostES5` для es5 стиля и `PostES6` для es6 стиля.
+Пост должен хранить:
+1. Автора поста (имени достаточно).
+2. Текст поста.
+3. Дату и время последнего изменения поста.
+Данные автора поста и текст поста необходимо передавать при создании
+экземпляра объекта.
+Каждому экземпляру объекта должен быть доступен метод `edit`, который будет
+менять текст поста.
+
+---
+
+Необходимо создать функцию-конструктор/класс для закрепленного поста в
+социальной сети.
+Названия: `AttachedPostES5` для es5 стиля и `AttachedPostES6` для es6 стиля.
+Закрепленный пост должен наследоваться от обычного поста.
+Данные автора поста и текст поста необходимо передавать при создании
+экземпляра объекта.
+Закрепленный пост должен иметь свойство `highlighted`, в котором по умолчанию
+будет лежать значение false (это свойство будет обозначать, будет ли наш
+закрепленный пост подсвечен).
+У экземпляров объекта закрепленного поста должен быть метод с названием
+`makeTextHighlighted`, который сделает так, чтобы наш пост стал подсвеченным
+(будет менять свойство `highlighted`).
+
+---
+
+Подсказки:
+1. Задание сложное, советую делать по аналогии с примером на онлайн-занятии.
+2. Обратите внимание что пост хранит "дату и время последнего изменения
+поста", это значит что если пост кто-то изменит (например вызовет какой-то
+метод, который изменит что-то в посте), дата и время последнего изменения
+поста также должна измениться.
+3. Выполняйте все по порядку, не стоит пытаться сделать все сразу, иначе можно
+что-нибудь пропустить.
+4. Если непонятно условие - задайте вопрос.
+-->
+<script>
+  "use strict";
+
+  //не нашел стандартного синхронного слипа для проверки - упер со стековерфлоу
+  function sleep(milliseconds) {
+    const t = (new Date()).getTime();
+    while (((new Date()).getTime() - t) < milliseconds) {
+    }
+  }
+
+  function PostES5(name, text) {
+    this.name = name;
+    this.text = text;
+    this.date = Date();
+  }
+
+  PostES5.prototype.edit = function (newText) {
+    this.text = newText
+    this.date = Date()
+  }
+
+  //test it
+  function testClassBlog (classElement, sleepMS = 2000, testHighlighted = false) {
+    console.log(`test ${classElement.name}`);
+    const blog = new classElement('Vasya', 'First text');
+    console.log(blog.name, 'right - ', blog.text, 'at -', blog.date);
+    console.log(`sleep ${sleepMS/1000} second`);
+    sleep(sleepMS);
+    blog.edit('Some new text');
+    console.log(blog.name, 'edit text to - ', blog.text, 'at -',  blog.date);
+    if (testHighlighted) {
+      console.log(`Был закреп - ${blog.highlighted}`)
+      blog.makeTextHighlighted(true)
+      console.log(`Стал - ${blog.highlighted}`)
+    }
+  }
+
+  testClassBlog(PostES5)
+
+
+  class PostES6 {
+    constructor(name, text) {
+      this.name = name;
+      this.text = text;
+      this.date = Date();
+    }
+
+    edit (newText) {
+      this.text = newText
+      this.date = Date()
+    }
+  }
+
+  testClassBlog(PostES6)
+
+  function AttachedPostES5(name, text) {
+    PostES5.call(this, name, text);
+    this.highlighted = false;
+  }
+
+  AttachedPostES5.prototype = Object.create(PostES5.prototype);
+  AttachedPostES5.prototype.constructor = AttachedPostES5;
+
+  AttachedPostES5.prototype.makeTextHighlighted = function (boolean) {
+    this.highlighted = boolean;
+  }
+
+  /*
+  Вот тут понял что не разобрался со значениями по умлчанию, у функции
+  подскажите плз есть к примеру функция
+  func(a, b=10, c = 20) {}
+  как ее вызвать не передавая b но передать а и c
+  неашел вариант func(a, undefind, c = 20) - как по мне он кривой )) нет ничего красивее?
+   */
+  testClassBlog(AttachedPostES5, 2000, true)
+
+  class AttachedPostES6 extends PostES6 {
+    constructor(name, text) {
+      super(name, text);
+      this.highlighted = false;
+    }
+
+    makeTextHighlighted(boolean) {
+      this.highlighted = boolean;
+    }
+  }
+
+  testClassBlog(AttachedPostES6, 2000, true)
+</script>
+</body>
+</html>
