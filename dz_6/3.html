@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+  <style>
+    i {
+      font-size: 50px;
+    }
+    .golden {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Выполнить все задачи в теге script. Комментарии, в которых написаны задачи, не
+стирать, код с решением задачи пишем под комментарием.
+-->
+
+<div class="stars_container">
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+</div>
+
+<script>
+  "use strict";
+
+  /*
+  1. При наведении на любую из звезд, данной звезде должен ставиться класс
+  golden, также такой класс должен ставиться всем звездам до нее слева.
+  */
+
+  const elemsStars = document.querySelectorAll('.fas')
+  elemsStars.forEach(elem => {
+    elem.addEventListener('mouseover', event => {
+      let previous = event.target;
+      while (previous) {
+        previous.classList.add('golden');
+        previous = previous.previousElementSibling;
+      }
+    })
+  })
+
+
+  /*
+  2. Когда мы уводим курсор мыши от звезды, все поставленные классы из первого
+  задания должны быть удалены.
+   */
+
+  elemsStars.forEach(elem => {
+    elem.addEventListener('mouseout', event => {
+      let previous = event.target;
+      while (previous) {
+        previous.classList.remove('golden');
+        previous = previous.previousElementSibling;
+      }
+    })
+  })
+
+
+  /*
+  3. Когда мы переводим мышь от одной звезды к другой, у нас могут мигать
+  звезды (временно могут становиться черными). Почему так? Напишите словами.
+  Можем ли мы это исправить? Если да, то предложите решение.
+  */
+
+  /*
+  Мигают из за того что при переводе звезда которая была в фокусе из фокуса уходит и отрабатывает второе задание
+  Возможных решений вижу 2
+  1) Не красивое - поставить задержку на выполнение и сделать некий хэндлер - (на JS пока не потяну ))) который
+  отменит действие функции из 2 при наступлении события из функции 1 если в заданный промежуток времени курсор
+  передвинится на следующую звезду
+  2) Общая логика - начал делать в 3_1 но пока не успел доделать
+  При заходе на блок звезд выполняем функцию закрасить до точки входа все золотм и после этого из этой же
+  функции удаляю addEventListener с этой функцией.
+  При уходе с блока со звездами - все крашу в черный
+  Остается 2 степени свободы - в право и в лево вот тут надо определить куда движемся (можно по наличию класса) и
+  придерживаемся логики что всегда спрва должно быть черное с лева золотое
+
+
+  УФФ пока писал сложил мысли в кучку и доделал )) Теперь не моргает
+   */
+
+</script>
+</body>
+</html>
