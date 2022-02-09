@@ -66,6 +66,10 @@
   также должен меняться.
   */
 
+  document.querySelector('input#from').addEventListener('keydown', (event) => {
+    document.querySelector('span').textContent += event.key;
+  });
+
 
   /*
   2. При клике на кнопку с классом messageBtn необходимо элементу с классом
@@ -73,6 +77,12 @@
   1) добавить два класса: animate__animated и animate__fadeInLeftBig
   2) поставить данному элементу стиль visibility в значение 'visible'.
    */
+
+  document.querySelector('.messageBtn').addEventListener('click', () => {
+    const elemMs1 = document.querySelector('.message');
+    elemMs1.classList.add('animate__animated', 'animate__fadeInLeftBig');
+    elemMs1.style.visibility = 'visible'
+  });
 
 
   /*
@@ -87,6 +97,39 @@
   Если поле было чем-либо заполнено, подсветку (класс error) необходимо убрать.
    */
 
+  function checkInput(inputElem) {
+    if (inputElem.value) {
+      inputElem.classList.remove('error')
+      return true
+    } else {
+      inputElem.classList.add('error')
+      return false
+    }
+  }
+
+  const elemForm = document.querySelector('form');
+  const inputAreas = elemForm.querySelectorAll('input, select')
+  elemForm.querySelector('button').addEventListener('click', (event) => {
+    let checkerForm = inputAreas.length;
+    for (const elem of inputAreas) {
+      checkerForm -= checkInput(elem);
+    }
+    if (checkerForm > 0) {
+      event.preventDefault();
+    }
+  });
+
+  /*
+  сделал и клик и чендж так как, без ченджа не могу понять, почему, если на селекторе кликнуть и выбрать пустое
+  поле а потом выбрать еще раз заполенное с первого раза подсветка не гаснет
+  такая же ситуация с одни ченджем - если на старте выбрать пустое то чендж не отрабатывает
+  keyup тут взял так как при кейдауне вероятно еще не успевает поменяться элемент
+  */
+  inputAreas.forEach(elem => {
+    elem.addEventListener('keyup', (event) => {checkInput(event.target)});
+    elem.addEventListener('click', (event) => {checkInput(event.target)});
+    elem.addEventListener('change', (event) => {checkInput(event.target)});
+  });
 
 </script>
 </body>

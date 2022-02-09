@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+  <style>
+    i {
+      font-size: 50px;
+    }
+    .golden {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Выполнить все задачи в теге script. Комментарии, в которых написаны задачи, не
+стирать, код с решением задачи пишем под комментарием.
+-->
+
+<div class="stars_container">
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+  <i class="fas fa-star"></i>
+</div>
+
+<script>
+  "use strict";
+
+  const elemsStars = document.querySelectorAll('.fas')
+
+  const starBlock = document.querySelector('.stars_container')
+
+  function makeAllBlack() {
+    elemsStars.forEach(elem => {
+      elem.classList.remove('golden');
+    })
+  }
+
+  starBlock.addEventListener('mouseleave', makeAllBlack)
+
+  function makeGoldFirst(event) {
+    let previous = event.target;
+    while (previous) {
+      previous.classList.add('golden');
+      previous = previous.previousElementSibling;
+    }
+    elemsStars.forEach(elem => {
+      elem.removeEventListener('mouseenter', makeGoldFirst)
+    })
+  }
+
+  function changeColor (event) {
+    const element = event.target
+    element.classList.add('golden')
+    if (element.nextElementSibling) {
+      if (element.nextElementSibling.classList.contains('golden')) {
+        element.nextElementSibling.classList.remove('golden');
+      }
+  }}
+
+
+
+  elemsStars.forEach(elem => {
+    elem.addEventListener('mouseenter', makeGoldFirst);
+    elem.addEventListener('mouseenter', changeColor);
+  })
+
+  starBlock.addEventListener('mouseenter', () => {
+    elemsStars.forEach(elem => {
+      elem.addEventListener('mouseenter', makeGoldFirst)
+    })
+  });
+
+
+
+</script>
+</body>
+</html>
