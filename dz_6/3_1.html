@@ -33,9 +33,9 @@
 <script>
   "use strict";
 
-  const elemsStars = document.querySelectorAll('.fas')
+  const elemsStars = document.querySelectorAll('.fas');
 
-  const starBlock = document.querySelector('.stars_container')
+  const starBlock = document.querySelector('.stars_container');
 
   function makeAllBlack() {
     elemsStars.forEach(elem => {
@@ -43,7 +43,7 @@
     })
   }
 
-  starBlock.addEventListener('mouseleave', makeAllBlack)
+  starBlock.addEventListener('mouseleave', makeAllBlack);
 
   function makeGoldFirst(event) {
     let previous = event.target;
@@ -52,7 +52,7 @@
       previous = previous.previousElementSibling;
     }
     elemsStars.forEach(elem => {
-      elem.removeEventListener('mouseenter', makeGoldFirst)
+      elem.removeEventListener('mouseenter', makeGoldFirst);
     })
   }
 
@@ -70,11 +70,11 @@
   elemsStars.forEach(elem => {
     elem.addEventListener('mouseenter', makeGoldFirst);
     elem.addEventListener('mouseenter', changeColor);
-  })
+  });
 
   starBlock.addEventListener('mouseenter', () => {
     elemsStars.forEach(elem => {
-      elem.addEventListener('mouseenter', makeGoldFirst)
+      elem.addEventListener('mouseenter', makeGoldFirst);
     })
   });
 
