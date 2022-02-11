@@ -21,9 +21,24 @@
    * @param {number} height - Rectangle height
    * @return {Rectangle}
    */
-  function Rectangle() {
+  function Rectangle(width, height) {
+    this.width = width;
+    this.height = height;
 
   }
+
+  Rectangle.prototype.getArea = function () {
+    return this.width * this.height
+  }
+
+  /*
+  увидел еще один метод для конструктора в гугле
+  когда метод создают не через прототип а через this
+  this.getArea = function () {
+    return this.width * this.height
+  }
+  внутри самой функции - есть ли принципиальное отличие?
+   */
 
   const r = new Rectangle(10, 20);
   console.log(r.width); // 10
